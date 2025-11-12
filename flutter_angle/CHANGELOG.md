@@ -1,3 +1,7 @@
+## 0.3.9
+
+* Fixed: Huawei vulkan error.
+
 ## 0.3.8
 
 * Updated ndk version.

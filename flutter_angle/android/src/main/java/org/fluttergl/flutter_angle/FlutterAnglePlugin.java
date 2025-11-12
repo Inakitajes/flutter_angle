@@ -85,10 +85,18 @@ class AngleCheck {
   }
 
   public static boolean isAllowed() {
-    if (!isVersionAllowed()) {//isEmulator() || 
+    if (!isVersionAllowed() || isBlacklistedForAngle()) {
       return false;
     } 
     return true;
+  }
+
+  public static boolean isBlacklistedForAngle() {
+    String m = Build.MANUFACTURER != null ? Build.MANUFACTURER.toLowerCase() : "";
+    String b = Build.BRAND != null ? Build.BRAND.toLowerCase() : "";
+    String d = Build.DEVICE != null ? Build.DEVICE.toLowerCase() : "";
+
+    return m.contains("huawei") || b.contains("huawei") || b.contains("honor");
   }
 }
 
