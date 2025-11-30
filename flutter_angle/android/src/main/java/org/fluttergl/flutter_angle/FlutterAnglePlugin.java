@@ -356,11 +356,16 @@ public class FlutterAnglePlugin implements FlutterPlugin, MethodCallHandler {
     }
     flutterTextureMap.clear();
 
-try {
-  deinit();
-} catch (UnsatisfiedLinkError e) {
-  Log.e(TAG, "Native method deinit() not linked correctly", e);
-}
+    try {
+      // Deinitialize native ANGLE resources
+      deinit();
+    }
+    catch (UnsatisfiedLinkError e) {
+      Log.e(TAG, "Error deinitializing native ANGLE resources", e);
+    }
+    catch (Throwable t) {
+      Log.e(TAG, "General exception in deinit()", t);
+    }
   }
 
   // --- Native methods (used for ANGLE calls) ---
