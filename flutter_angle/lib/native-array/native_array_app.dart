@@ -20,7 +20,7 @@ abstract class PlatformNativeArray<T extends num> extends NativeArray<T> {
 
   @override
   void dispose() {
-    if (!disposed) {
+    if (!disposed && !isPointCpp) {
       calloc.free(data);
       disposed = true;
     }
@@ -44,6 +44,12 @@ class NativeFloat32Array extends PlatformNativeArray<double> {
     toDartList().setAll(0, listData);
   }
 
+  ///from c++ layer shared pointer
+  NativeFloat32Array.fromPoint(Pointer<Float> data, int size) : super(size) {
+    _list = data;
+    oneByteSize = sizeOf<Float>();
+    isPointCpp = true;
+  }
   Float32List toDartList() {
     return data.asTypedList(length);
   }

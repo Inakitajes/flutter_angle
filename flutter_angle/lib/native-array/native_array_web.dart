@@ -48,6 +48,12 @@ class NativeFloat32Array extends PlatformNativeArray<double> {
     oneByteSize = Float32List.bytesPerElement;
   }
 
+  ///from c++ layer shared pointer
+  NativeFloat32Array.fromPoint(Float32List data, int size) : super(size) {
+    _list = data;
+    oneByteSize = Float32List.bytesPerElement;
+    // isPointCpp = true;
+  }
   @override
   NativeFloat32Array clone() {
     return NativeFloat32Array.fromList(_list);

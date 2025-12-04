@@ -39,7 +39,8 @@ abstract class NativeArray<T extends num> {
   int get BYTES_PER_ELEMENT => oneByteSize;
   
   bool disposed = false;
-
+  //Is it a shared pointer in the CPP layer, and does it not need to be released by Dart
+  bool isPointCpp = false;
   get data;
   get toJS;
 

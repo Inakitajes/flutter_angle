@@ -4,6 +4,9 @@ class Float32Array extends NativeFloat32Array {
   Float32Array(int size) : super(size);
   Float32Array.fromList(List<double> listData) : super.fromList(listData);
 
+  ///from c++ layer shared pointer
+  Float32Array.fromPoint(dynamic pointFloat, int size)
+      : super.fromPoint(pointFloat, size);
   Float32Array clone() {
     var dartList = this.toDartList();
     return Float32Array(dartList.length)..set(dartList);
